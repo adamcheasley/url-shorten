@@ -17,6 +17,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from url_shortener import views
+
 urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'^create/', views.create_short_url, name='create'),
+    url(r'^resolve/(.*)', views.resolve),
     url(r'^admin/', admin.site.urls),
 ]
