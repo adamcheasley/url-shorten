@@ -8,7 +8,7 @@ class URLMap(models.Model):
     original_url = models.TextField()
     shortcode = models.CharField(max_length=255, editable=False, null=True)
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.shortcode = hashlib.sha256(
             self.original_url.encode('ascii')).hexdigest()[:8]
         super(URLMap, self).save()
