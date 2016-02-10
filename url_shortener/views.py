@@ -32,9 +32,11 @@ def create_short_url(request):
         new.save()
         base_url = request.build_absolute_uri().replace(
             request.get_full_path(), '')
-        return HttpResponse(
-            "Shortened URL is {}/resolve/{}".format(
-                base_url, new.shortcode))
+        shorturl = "{}/resolve/{}".format(
+            base_url, new.shortcode)
+        return render(request,
+                      'shorturl_created.html',
+                      {'shorturl': shorturl})
     else:
         form = URLCreationForm()
 
